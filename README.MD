@@ -1,4 +1,4 @@
-[![Build Status](https://drone.pi.scjtqs.com:8443/api/badges/scjtqs/jd_cookie/status.svg)](https://drone.pi.scjtqs.com:8443/scjtqs/jd_cookie)
+
 # 说明
 
 ## v1.x 版本(tag) 本地运行，本地提取
@@ -26,25 +26,7 @@ chmod +x jdcookie
 ## cmd 中运行 参数和linux一样
 .\jdcookie.exe -d
 ```
-v2.0.5
-> 应网友 @king6207 的要求，前端页面，提取cookie成功后增加一个直接复制cookie的按钮。
-> 
-
-
-v2.0.4
-> 调整更新的sql语法，将replace into替换为 INSERT .... ON DUPLICATE KEY UPDATE。修复更新cookie引发id变更的问题（replace更新是先删在insert)。因小伙伴要求id顺序不能变。 
-
-v2.0.3
-> 数据库做调整、主键变更为id字段，方便一些用户做排序。
-
-v2.0.2
-> 增加了cookie存入db的支持
-
-v 2.0.1
-> 环境变量 UPSAVE cookie的推送地址。
->
-> 简单做了一个docker镜像 scjtqs/jd_cookie:latest 
-> 
+ 
 > 支持  arm/arm64/i386/amd64
 
 ## 编译方法 (For v2.x tag)
@@ -111,13 +93,13 @@ CGO_ENABLED=1 go build  -o jdcookie.exe
 
 #### quick start
 ```bash
-docker run -d -p 29099:29099  scjtqs/jd_cookie:latest
+docker run -d -p 29099:29099  tingyue-wu/jd_cookie:latest
 ```
 
 ### with environment
 ```bash
 ## 更新镜像
-docker pull jd_cookie scjtqs/jd_cookie:latest
+docker pull jd_cookie tingyue-wu/jd_cookie:latest
 ## UPSAVE 默认是空，不会推送到其他地址；DB_ENABLE默认为false，不会记录cookie到db。
 docker run -d \
 -p 29099:29099 \
@@ -129,7 +111,7 @@ docker run -d \
 -e DB_PASS="abcde" \
 -e DB_DATABASE="cookies" \
 -e DB_TYPE="mysql" \
---name jd_cookie scjtqs/jd_cookie:latest
+--name jd_cookie tingyue-wu/jd_cookie:latest
 ```
 ### for sqlite3 usage
 ```bash
@@ -140,7 +122,7 @@ docker run -d \
 -e DB_ENABLE="true" \
 -e DB_HOST="./db/cookies.db" \
 -e DB_TYPE="sqlite3" \
---name jd_cookie scjtqs/jd_cookie:latest
+--name jd_cookie tingyue-wu/jd_cookie:latest
 ```
 
 ### 佛系更新，够用就行。欢迎pr和建议。欢迎start
